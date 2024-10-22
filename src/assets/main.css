@@ -1,0 +1,444 @@
+/* html */
+* {
+    margin: 0;
+    word-wrap: break-word;
+}
+
+#root {
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+    --root-background-color: #fff;
+    --root-text-color: #000;
+    background-color: var(--root-background-color);
+    color: var(--root-text-color);
+    /* --accent-color: #335; consider using */
+}
+
+/* ticker */
+@keyframes ticker {
+    0%   { left: 100%; }
+    80% { left: -100%; }
+    100% { left: -100%; }
+}
+
+.ticker {
+    animation: ticker 30s linear 1;
+    display: inline-block;
+    position: absolute;
+    /* done so that the content in the ticker is not visible during the anim delay (if there is a gap) */
+    left: 100%;
+}
+#tickerBar {
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 0;
+    overflow: hidden;
+    white-space: pre;
+    height: 1em;
+}
+
+/* table */
+.table {
+    display: grid;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* weaher */
+.weatherIcon {
+    width: 100%;
+    height: calc(100% - 6em);
+}
+
+.weatherWeekDay, .graphLabelX {
+    font-size: 6em;
+    text-align: center;
+}
+
+.weatherText {
+    font-size: 4em;
+    overflow: hidden;
+    max-width: 100%;
+    /* decide what to do here */
+    /* white-space: nowrap; */
+}
+
+.weatherData, .graphColumn {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.tempData, .graphData {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.tempData {
+    font-size: 6em;
+    border: solid rgb(255, 215, 0);
+    border-width: 0.3em 0 0;
+    background: rgba(255, 215, 0, 0.4);
+}
+
+.precipitation {
+    background: rgba(0, 0, 255, 0.3);
+    border-color: rgb(0, 0, 255);
+}
+
+/* wather daily */
+.weatherDailyInfo {
+    height: 40%;
+    max-height: 40%;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    max-width: 100vw;
+    min-width: 0;
+}
+
+.tempPeak {
+    display: inline;
+    font-size: 30em;
+}
+
+.WDIPHW, .weatherDate {
+    font-size: 12em;
+    line-height: 110%;
+    white-space: nowrap;
+    flex-shrink: 1;
+    flex-grow: 1;
+    flex-basis: 0;
+    min-width: 0;
+}
+.WDIPHW div, .weatherDate div {
+    display: inline;
+    min-width: 0;
+}
+
+.weatherDate {
+    margin-left: auto;
+    text-align: right;
+    flex-direction: row-reverse;
+}
+
+.weatherGraph {
+    /* height: calc(100% - 12em); */
+    height: 60%;
+    position: relative;
+}
+
+.weatherTime {
+    text-align: center;
+    font-size: 6em;
+}
+
+/* nav and footer */
+.barContainer {
+    min-height: 6vh;
+    max-height: 6vh;
+    font-size: 5vh;
+    line-height: 1em;
+    padding: 0.5vh 0;
+    box-sizing: border-box;
+    white-space: nowrap;
+    color: var(--root-text-color);
+    background-color: var(--root-background-color);
+    overflow: hidden;
+    max-width: 100vw;
+    min-width: 100vw;
+    box-shadow: 0 0 10px 1px black;
+}
+
+.flexBar {
+    display: flex;
+    gap: 0.4em;
+}
+.gridBar {
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+}
+
+.barCenter {
+    text-align: center;
+}
+/* .barAround {
+    justify-content: space-around;
+}
+.barBetween {
+    justify-content: space-between;
+} */
+
+/* logo */
+.logo {
+    /* background: center no-repeat;
+    background-size: contain; */
+    max-width: 100%;
+    max-height: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+/* graphs */
+.graphValue {
+    position: relative;
+    top: -1.2em;
+}
+
+.graphTitle {
+    /* overflow */
+    text-align: center;
+    max-height: 10em;
+    font-size: 10em;
+    line-height: 1em;
+}
+
+.graphLegend {
+    margin-top: 0.25em;
+    font-size: 4em;
+    line-height: 1em;
+    text-align: center;
+    max-height: 1em;
+}
+
+.graphLegendLabel {
+    display: inline-block;
+    margin-left: 0.8em;
+}
+
+.graphLegendColor {
+    float: left;
+    /* display: inline-block; */
+    box-sizing:border-box;
+    margin: 0.125em;
+    height: 0.75em;
+    width: 0.75em;
+    border: 0.05em solid black;
+}
+
+.barGraph {
+    display: grid;
+    overflow: hidden;
+    position: relative;
+    max-width: 100%;
+}
+
+.graphScaleText {
+    font-size: 3em;
+    text-align: right;
+    height: 1em;
+    line-height: 1em;
+}
+
+.graphScaleText::after {
+    content: "";
+    position: absolute;
+    height: var(--bar-size);
+    width: 100%;
+    /* z-index: 1; */
+    background: rgba(0, 0, 0, 0.8);
+    left: calc(10% + var(--left-offset))
+}
+
+/* lists */
+.listItem {
+    line-height: 1em;
+}
+
+/* screens */
+.screen {
+    min-height: 86vh;
+    max-height: 86vh;
+    padding: 1vh 0.4vw;
+    max-width: 100vw;
+    background: var(--borderColor);
+    display: grid;
+    grid-template-rows: repeat(var(--row-count), calc(100% / var(--row-count)));
+    grid-template-columns: repeat(var(--column-count), calc(100% / var(--column-count)));
+}
+
+.flex {
+    display: flex;
+    max-width: 100%;
+    min-width: 0;
+    max-height: 86vh;
+    margin: 0.6vh 0.6vw;
+    /* to be changed upon addition of darkmode */
+    background: var(--inverted);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.flex > div {
+    box-sizing: border-box;
+    padding: 0.4vh 0.4vw;
+    min-height: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.loading {
+    text-align: center;
+}
+
+.loadingText {
+    font-size: 6vh;
+    margin: 1vh 0;
+}
+
+.loadingIcon {
+    display: inline-block;
+    width: 20vh;
+    height: 20vh;
+    margin-top: 30vh
+}
+
+.loadingIcon::after {
+    content: " ";
+    display: block;
+    width: 16vh;
+    height: 16vh;
+    margin: 2vh;
+    border-radius: 50%;
+    border: 1.5vh solid;
+    border-color: #000 transparent #000 transparent;
+    animation: loadingIconAnimation 1.2s linear infinite;
+}
+
+@keyframes loadingIconAnimation {
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(360deg);
+}
+}
+
+/* lil weather icon */
+.icon_container {
+    z-index: 1;
+    max-width: 5vw;
+    min-width: 5vw;
+    height: 5vh;
+    background: var(--root-background-color);
+    /* box-shadow: -1em 0 var(--root-background-color); */
+    display: inline-block;
+    padding: 0 3px;
+    margin: auto;
+}
+.icon_container svg{
+    transform: translate(-50%, -50%);
+    inset: 50% 0 0 50%;
+    position: relative
+}
+
+/* animations */
+
+/* timing functions for animations are such so they don't reset and can be deleted in time */
+/* https://codepen.io/nelledejones/pen/gOOPWrK use as reference */
+@keyframes fade-in {
+    0% {opacity: 0;}
+    50% {opacity: 1;}
+    100% {opacity: 1;}
+}
+.fade-in {
+    animation: fade-in 2s linear 1;
+}
+
+@keyframes fade-out {
+    0% {opacity: 1;}
+    50% {opacity: 0;}
+    100% {opacity: 0;}
+}
+.fade-out {
+    animation: fade-out 2s linear 1;
+}
+
+@keyframes slide-out {
+    0% {left: 0;}
+    50% {left: -100%;}
+    100% {left: -100%;}
+}
+.slide-out {
+    animation: slide-out 2s cubic-bezier(0.65, 0, 0.2, 1) 1;
+    position: relative;
+}
+
+@keyframes slide-in {
+    0% {left: 100%;}
+    50% {left: 0;}
+    100% {left: 0;}
+}
+.slide-in {
+    animation: slide-in 2s cubic-bezier(0.65, 0, 0.2, 1) 1;
+    position: relative;
+}
+
+@keyframes drop-out {
+    0% {bottom: 0;}
+    50% {bottom: -100vh;}
+    100% {bottom: -100vh;}
+}
+.drop-out {
+    animation: drop-out 2s cubic-bezier(0.65, 0, 0.2, 1) 1;
+    position: relative;
+    z-index: -1;
+}
+
+@keyframes drop-in {
+    0% {bottom: 100vh;}
+    50% {bottom: 0;}
+    100% {bottom: 0;}
+}
+.drop-in {
+    animation: drop-in 2s cubic-bezier(0.65, 0, 0.2, 1) 1;
+    position: relative;
+    z-index: -1;
+}
+
+@keyframes flip-in {
+    0% {transform: rotate(-90deg);}
+    33% {transform: rotate(0);}
+    100% {transform: rotate(0);}
+}
+.flip-in {
+    animation: flip-in 2s ease  1;
+    transform-origin: bottom left;
+    position: relative;
+    z-index: -1;
+}
+
+@keyframes flip-out {
+    0% {transform: rotate(0);}
+    33% {transform: rotate(90deg);}
+    100% {transform: rotate(90deg);}
+}
+.flip-out {
+    animation: flip-out 2s ease  1;
+    transform-origin: bottom left;
+    position: relative;
+    z-index: -1;
+}
+
+@keyframes expand-in {
+    0% {transform: scale(0);}
+    50% {transform: scale(1);}
+    100% {transform: scale(1);}
+}
+.expand-in {
+    animation: expand-in 2s ease 1;
+}
+
+@keyframes expand-out {
+    0% {transform: scale(1);}
+    50% {transform: scale(0);}
+    100% {transform: scale(0);}
+}
+.expand-out {
+    animation: expand-out 2s cubic-bezier(0.9, 0, 0.5, 1) 1
+}

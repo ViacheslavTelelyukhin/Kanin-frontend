@@ -1,0 +1,1 @@
+export default function LineGraph(input) {} //I gave up here because drawing line graph involves math I wasn't willing to do at the time
